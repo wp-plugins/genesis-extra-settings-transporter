@@ -28,6 +28,8 @@ A great helper tool for Genesis child themes plus Genesis-specific plugins with 
 * Fully internationalized plugin, fully transalateable.
 * This plugin just leverages the AWESOMENESS of Genesis Framework and WordPress! Therefore it's a really simple, lightweight, flexible plugin.
 
+See the *FAQ* here for a [**full list of supported plugins & child themes...**](http://wordpress.org/extend/plugins/genesis-extra-settings-transporter/faq/)
+
 = Useful for: =
 * Users who want to backup their settings - in a combined way, or seperate for supported plugins and/ or themes.
 * Developers and/ or agencies who want to speed up their development times and just use pure Genesis awesomeness :).
@@ -147,7 +149,6 @@ Just released into the wild.
 == Plugin Links ==
 * [Translations (GlotPress)](http://translate.wpautobahn.com/projects/genesis-plugins-deckerweb/genesis-extra-settings-transporter)
 * [User support forums](http://wordpress.org/support/plugin/genesis-extra-settings-transporter)
-* [Code snippets archive for customizing, GitHub Gist](https://gist.github.com/???)
 
 == Donate ==
 Enjoy using *Genesis Extra Settings Transporter*? Please consider [making a small donation](http://genesisthemes.de/en/donate/) to support the project's continued development.
