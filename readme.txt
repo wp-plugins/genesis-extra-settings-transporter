@@ -134,7 +134,7 @@ The way better alternative, though, is, when developers add that little hook in 
 
 == Changelog ==
 
-= 1.0.0 (2013-01-??) =
+= 1.0.0 (2013-01-25) =
 * *Initial release*
 * Includes support for 17 different plugins.
 * Includes support for 53 different child themes.
