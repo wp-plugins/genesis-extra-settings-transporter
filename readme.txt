@@ -12,10 +12,10 @@ Adds support for exporting settings of various Genesis Framework specific plugin
 
 == Description ==
 
-= Backup or Transfer Settings =
-Not only do backups or transfers of Genesis core settings but **also hook in official & third-party plugins** plus **some child themes**. Especially useful for developers to speed up their work!
-
-A great helper tool for Genesis child themes plus Genesis-specific plugins with their own **extra settings**!
+> #### Backup or Transfer Settings
+> Not only do backups or transfers of Genesis core settings but **also hook in official & third-party plugins** plus **some child themes**. Especially useful for developers to speed up their work!
+> 
+> A great helper tool for Genesis child themes plus Genesis-specific plugins with their own **extra settings**!
 
 = Features, Advantages & Benefits =
 * Currently 17 different plugins are supported. (These being official ones plus third-party community plugins.)
@@ -34,21 +34,21 @@ See the *FAQ* here for a [**full list of supported plugins & child themes...**](
 * Users who want to backup their settings - in a combined way, or seperate for supported plugins and/ or themes.
 * Developers and/ or agencies who want to speed up their development times and just use pure Genesis awesomeness :).
 
-= Typical Workflow Example =
-*Transfer settings from a development install to the live/ production install.*
-
-**1) Prerequisites/ Requirements:**
-
-* On BOTH sites/ installations you have installed & activated for example the (great) "Curtail" child theme, plus the following plugins: Genesis Layout Extras, Genesis Responsive Slider, Genesis Simple Hooks, Genesis Simple Sidebars.
-* On BOTH sites/ installations you have installed & activated this plugin, "Genesis Extra Settings Transporter".
-* It's recommended to have THE VERY SAME VERSIONS installed on the original site and also the receiving site. Reason: sometimes settings differ between plugin or child theme versions. So with making sure you have the same versions installed you just ensure the correct settings are included within the export file.
-
-**2) Transfer:**
-
-* On the development install: Just make an Export file via "Genesis > Import/Export" admin page:
-* In the "Export" section there enable all checkboxes you need.
-* Save the .JSON file to your computer.
-* On the live/ production site, just import this .JSON file and you're done! ;-)
+> #### Typical Workflow Example
+> *Transfer settings from a development install to the live/ production install.*
+> 
+> **1) Prerequisites/ Requirements:**
+> 
+> * On BOTH sites/ installations you have installed & activated for example the (great) "Curtail" child theme, plus the following plugins: Genesis Layout Extras, Genesis Responsive Slider, Genesis Simple Hooks, Genesis Simple Sidebars.
+> * On BOTH sites/ installations you have installed & activated this plugin, "Genesis Extra Settings Transporter".
+> * It's recommended to have THE VERY SAME VERSIONS installed on the original site and also the receiving site. Reason: sometimes settings differ between plugin or child theme versions. So with making sure you have the same versions installed you just ensure the correct settings are included within the export file.
+> 
+> **2) Transfer:**
+> 
+> * On the development install: Just make an Export file via "Genesis > Import/Export" admin page:
+> * In the "Export" section there enable all checkboxes you need.
+> * Save the .JSON file to your computer.
+> * On the live/ production site, just import this .JSON file and you're done! ;-)
 
 Please note: This plugin requires the Genesis Theme Framework.
 
