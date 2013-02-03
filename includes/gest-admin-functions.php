@@ -5,10 +5,10 @@
  * @package    Genesis Extra Settings Transporter
  * @subpackage Admin
  * @author     David Decker - DECKERWEB
- * @copyright  Copyright 2013, David Decker - DECKERWEB
+ * @copyright  Copyright (c) 2013, David Decker - DECKERWEB
  * @license    http://www.opensource.org/licenses/gpl-license.php GPL-2.0+
  * @link       http://genesisthemes.de/en/wp-plugins/genesis-extra-settings-transporter/
- * @link       http://twitter.com/deckerweb
+ * @link       http://deckerweb.de/twitter
  *
  * @since 1.0.0
  */
@@ -196,7 +196,7 @@ function ddw_gest_plugins_export_additions( array $options ) {
 
 	}
 
-	/** Genesis Design Palette (gdp)  - free, by Andrew Norcross */
+	/** Genesis Design Palette (gdp) - free, by Andrew Norcross */
 	if ( defined( 'GS_SETTINGS_FIELD' ) ) {
 
 		$options[ 'gdp' ] = array(
@@ -206,7 +206,7 @@ function ddw_gest_plugins_export_additions( array $options ) {
 
 	}
 
-	/** Generate Box (grtbox)  - free, by Hesham Zebida */
+	/** Generate Box (grtbox) - free, by Hesham Zebida */
 	if ( defined( 'generatebox_SETTINGS_FIELD' ) ) {
 
 		$options[ 'grtbox' ] = array(
@@ -215,6 +215,45 @@ function ddw_gest_plugins_export_additions( array $options ) {
 		);
 
 	}
+
+	/** Genesis Custom Backgrounds (gcbg) - free, by Travis Smith */
+	if ( defined( 'GCB_SETTINGS_FIELD' ) ) {
+
+		$options[ 'gcbg' ] = array(
+			'label'          => $gest_plugin_prefix . __( 'Genesis Custom Backgrounds', 'genesis-extra-settings-transporter' ) . $gest_plugin_suffix_other,
+			'settings-field' => GCB_SETTINGS_FIELD
+		);
+
+	}
+
+	/** Genesis Portfolio (gpfl) - free, by Travis Smith */
+	if ( class_exists( 'minFolio_Portfolio_Settings' ) ) {
+
+		$options[ 'gpfl' ] = array(
+			'label'          => $gest_plugin_prefix . __( 'Genesis Portfolio', 'genesis-extra-settings-transporter' ) . $gest_plugin_suffix_other,
+			'settings-field' => 'minfolio-portfolio-settings'
+		);
+
+	}
+
+	/** Genesis Custom Post Types Archives - free, by Travis Smith */
+	if ( function_exists( 'gcpta_init' ) ) {
+
+		$pt_args = apply_filters( 'gcpta_pt_args' , array( 'public' => true, 'capability_type' => 'post', '_builtin' => false, 'has_archive' => true, 'show_ui' => true ) );
+		$pts = get_post_types( $pt_args , 'names', 'and' );
+		
+		foreach ( $pts as $pt ) {
+			
+			$gest_gcpta_objects = get_post_type_object( $pt );
+
+			$options[ 'gcpta' . $pt ] = array(
+				'label'          => $gest_plugin_prefix . __( 'Genesis Custom Post Types Archives', 'genesis-extra-settings-transporter' )  . ' for: ' . $gest_gcpta_objects->labels->name . ' ' . $gest_plugin_suffix_other,
+				'settings-field' => 'gcpta-settings-' . $pt
+			);
+
+		}  // end foreach
+
+	}  // end-if
 
 	/** Return the additional (plugins) settings fields to hook into the Genesis Exporter */
 	return $options;
@@ -255,7 +294,7 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 	 * 1) Community/ Markeptlace child themes (via studiopress.com)
 	 */
 
-	/** Curtail (by Thomas Griffin Media) */
+	/** Curtail (premium, by Thomas Griffin Media) */
 	if ( defined( 'CURTAIL_SETTINGS_FIELD' ) ) {
 
 		$options[ 'ctcurtail' ] = array(
@@ -269,7 +308,7 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 	 * 2) Third-party child themes (via other sources)
 	 */
 
-	/** Genesis Sandbox (by SureFireWebservice) */
+	/** Genesis Sandbox (free, by SureFireWebservice) - version 1.1+ required! */
 	if ( class_exists( 'Genesis_Sandbox_Settings' ) && defined( 'CHILD_SETTINGS_FIELD' ) ) {
 
 		$options[ 'ctgsandbox' ] = array(
@@ -279,7 +318,7 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 
 	}
 
-	/** AyoShop (by AyoThemes) */
+	/** AyoShop (once premium, now free, by AyoThemes) */
 	if ( function_exists( 'ayoshop_setup' ) ) {
 
 		$options[ 'ctayoshop' ] = array(
@@ -289,7 +328,7 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 
 	}
 
-	/** Dizain-01 (by ThemeDizain) */
+	/** Dizain-01 (premium, by ThemeDizain) */
 	if ( class_exists( 'Dizain' ) ) {
 
 		$options[ 'ctdizain01' ] = array(
@@ -299,7 +338,7 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 
 	}
 
-	/** Radio (by Greg Rickaby) */
+	/** Radio (free, by Greg Rickaby) */
 	if ( defined( 'CHILD_THEME_NAME' ) && ( 'Radio Theme' == CHILD_THEME_NAME ) ) {
 
 		$options[ 'ctradio' ] = array(
@@ -309,7 +348,7 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 
 	}
 
-	/** Curb Appeal (by Agent Evolution) */
+	/** Curb Appeal (premium, by Agent Evolution) */
 	if ( class_exists( 'Curb_Appeal_Footer_Settings' ) ) {
 
 		$options[ 'ctcurbappeal' ] = array(
@@ -319,7 +358,7 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 
 	}
 
-	/** Turn Key (by Agent Evolution) */
+	/** Turn Key (premium, by Agent Evolution) */
 	if ( class_exists( 'Turn_Key_Footer_Settings' ) ) {
 
 		$options[ 'ctturnkey' ] = array(
@@ -329,7 +368,7 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 
 	}
 
-	/** Egreen (by ThemeWolf) */
+	/** Egreen (premium, by ThemeWolf) */
 	if ( defined( 'CHILD_THEME_NAME' ) && ( 'Egreen Theme' == CHILD_THEME_NAME ) ) {
 
 		$options[ 'ctegreen' ] = array(
@@ -339,7 +378,7 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 
 	}
 
-	/** Dedicated (by GenesisAwesome) */
+	/** Dedicated (free, by GenesisAwesome) */
 	if ( defined( 'GA_CHILDTHEME_FIELD' ) || ( defined( 'CHILD_THEME_NAME' ) && ( 'Dedicated' == CHILD_THEME_NAME ) ) ) {
 
 		$options[ 'ctdedicated' ] = array(
@@ -349,7 +388,7 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 
 	}
 
-	/** Greetings (by GenesisAwesome) */
+	/** Greetings (free, by GenesisAwesome) */
 	if ( defined( 'GA_CHILDTHEME_FIELD' ) || ( defined( 'CHILD_THEME_NAME' ) && ( 'Greetings' == CHILD_THEME_NAME ) ) ) {
 
 		$options[ 'ctgreetings' ] = array(
@@ -359,7 +398,7 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 
 	}
 
-	/** Portlight (by GenesisAwesome) */
+	/** Portlight (free, by GenesisAwesome) */
 	if ( defined( 'GA_CHILDTHEME_FIELD' ) || ( defined( 'CHILD_THEME_NAME' ) && ( 'Portlight' == CHILD_THEME_NAME ) ) ) {
 
 		$options[ 'ctportlight' ] = array(
@@ -369,8 +408,18 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 
 	}
 
+	/** Bigg (free, by OD - OpenDesigns.org) */
+	if ( class_exists( 'BiggLikes' ) ) {
+
+		$options[ 'ctbigg' ] = array(
+			'label'          => $gest_child_theme_prefix . 'Bigg' . $gest_theme_settings . $gest_child_theme_suffix_other,
+			'settings-field' => GSSETTINGS_SETTINGS_FIELD
+		);
+
+	}
+
 	/**
-	 * 3) Third-party child themes by "Web Savvy Marketing, LLC"
+	 * 3) Third-party child themes by "Web Savvy Marketing, LLC" -- all premium!
 	 */
 
 	/** Alexandra */
@@ -564,7 +613,7 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 	}
 
 	/**
-	 * 4) Third-party child themes by "Themedy" brand
+	 * 4) Third-party child themes by "Themedy" brand -- 1 free, all other premium!
 	 */
 
 	/** Blink */
@@ -738,7 +787,7 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 	}
 
 	/**
-	 * 5) Third-party child themes by "ZigZagPress" brand
+	 * 5) Third-party child themes by "ZigZagPress" brand -- all premium!
 	 */
 
 	/** Bijou */
@@ -756,6 +805,16 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 
 		$options[ 'ctengrave' ] = array(
 			'label'          => $gest_child_theme_prefix . 'Engrave' . $gest_theme_settings . $gest_child_theme_suffix_other,
+			'settings-field' => 'of_template'
+		);
+
+	}
+
+	/** Megalithe 1.2+ */
+	if ( defined( 'CHILD_THEME_NAME' ) && ( 'Megalithe' == CHILD_THEME_NAME ) ) {
+
+		$options[ 'ctmegalithe' ] = array(
+			'label'          => $gest_child_theme_prefix . 'Megalithe' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => 'of_template'
 		);
 
@@ -814,6 +873,8 @@ add_action( 'genesis_import_export_form', 'ddw_gest_exporter_notice' );
  */
 function ddw_gest_exporter_notice() {
 
+//
+
 	/** Begin table code */
 	?>
 
@@ -827,6 +888,7 @@ function ddw_gest_exporter_notice() {
 					); ?></p>
 					<p><?php _e( 'There\'s NO warranty supplied when you use this plugin, all at your own risk!', 'genesis-extra-settings-transporter' ); ?>
 					</p>
+					<?php echo ddw_gest_plugin_help_content_faq(); ?>
 				</td>
 		</tr>
 

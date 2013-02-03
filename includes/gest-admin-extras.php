@@ -5,10 +5,10 @@
  * @package    Genesis Extra Settings Transporter
  * @subpackage Admin
  * @author     David Decker - DECKERWEB
- * @copyright  Copyright 2013, David Decker - DECKERWEB
+ * @copyright  Copyright (c) 2013, David Decker - DECKERWEB
  * @license    http://www.opensource.org/licenses/gpl-license.php GPL-2.0+
  * @link       http://genesisthemes.de/en/wp-plugins/genesis-extra-settings-transporter/
- * @link       http://twitter.com/deckerweb
+ * @link       http://deckerweb.de/twitter
  *
  * @since 1.0.0
  */
@@ -23,6 +23,8 @@ define( 'GEST_URL_WPORG_FAQ',		'http://wordpress.org/extend/plugins/genesis-extr
 define( 'GEST_URL_WPORG_FORUM',		'http://wordpress.org/support/plugin/genesis-extra-settings-transporter' );
 define( 'GEST_URL_WPORG_PROFILE',	'http://profiles.wordpress.org/daveshine/' );
 define( 'GEST_PLUGIN_LICENSE', 		'GPL-2.0+' );
+define( 'GEST_URL_SUPPORTED_PLUGINS',		'https://gist.github.com/4683986#file-gest_a_supported-plugins-md' );
+define( 'GEST_URL_SUPPORTED_CHILD_THEMES',	'https://gist.github.com/4683986#file-gest_b_supported-child-themes-md' );
 if ( get_locale() == 'de_DE' || get_locale() == 'de_AT' || get_locale() == 'de_CH' || get_locale() == 'de_LU' ) {
 	define( 'GEST_URL_DONATE', 	'http://genesisthemes.de/spenden/' );
 	define( 'GEST_URL_PLUGIN',	'http://genesisthemes.de/plugins/genesis-extra-settings-transporter/' );
@@ -79,10 +81,10 @@ function ddw_gest_plugin_links( $gest_links, $gest_file ) {
 	/** List additional links only for this plugin */
 	if ( $gest_file == GEST_PLUGIN_BASEDIR . '/genesis-extra-settings-transporter.php' ) {
 
-		$gest_links[] = '<a href="' . esc_url_raw( GEST_URL_WPORG_FAQ ) . '" target="_new" title="' . __( 'FAQ', 'genesis-extra-settings-transporter' ) . '">' . __( 'FAQ', 'genesis-extra-settings-transporter' ) . '</a>';
-		$gest_links[] = '<a href="' . esc_url_raw( GEST_URL_WPORG_FORUM ) . '" target="_new" title="' . __( 'Support', 'genesis-extra-settings-transporter' ) . '">' . __( 'Support', 'genesis-extra-settings-transporter' ) . '</a>';
-		$gest_links[] = '<a href="' . esc_url_raw( GEST_URL_TRANSLATE ) . '" target="_new" title="' . __( 'Translations', 'genesis-extra-settings-transporter' ) . '">' . __( 'Translations', 'genesis-extra-settings-transporter' ) . '</a>';
-		$gest_links[] = '<a href="' . esc_url_raw( GEST_URL_DONATE ) . '" target="_new" title="' . __( 'Donate', 'genesis-extra-settings-transporter' ) . '"><strong>' . __( 'Donate', 'genesis-extra-settings-transporter' ) . '</strong></a>';
+		$gest_links[] = '<a href="' . esc_url( GEST_URL_WPORG_FAQ ) . '" target="_new" title="' . __( 'FAQ', 'genesis-extra-settings-transporter' ) . '">' . __( 'FAQ', 'genesis-extra-settings-transporter' ) . '</a>';
+		$gest_links[] = '<a href="' . esc_url( GEST_URL_WPORG_FORUM ) . '" target="_new" title="' . __( 'Support', 'genesis-extra-settings-transporter' ) . '">' . __( 'Support', 'genesis-extra-settings-transporter' ) . '</a>';
+		$gest_links[] = '<a href="' . esc_url( GEST_URL_TRANSLATE ) . '" target="_new" title="' . __( 'Translations', 'genesis-extra-settings-transporter' ) . '">' . __( 'Translations', 'genesis-extra-settings-transporter' ) . '</a>';
+		$gest_links[] = '<a href="' . esc_url( GEST_URL_DONATE ) . '" target="_new" title="' . __( 'Donate', 'genesis-extra-settings-transporter' ) . '"><strong>' . __( 'Donate', 'genesis-extra-settings-transporter' ) . '</strong></a>';
 
 	}  // end-if plugin links
 
@@ -140,7 +142,7 @@ function ddw_gest_help_content() {
 
 	echo '<h4><em>' . __( 'A Typical Workflow Example', 'genesis-extra-settings-transporter' ) . '</em></h4>' .
 		'<p><em>' . __( 'Transfer settings from a development install to the live/ production install.', 'genesis-extra-settings-transporter' ) . '</em></p>' .
-		'<p><strong>' . __( 'Prerequisites/ Requirements', 'genesis-extra-settings-transporter' ) . ':</strong></p>' .
+		'<blockquote><p><strong>' . __( 'Prerequisites/ Requirements', 'genesis-extra-settings-transporter' ) . ':</strong></p>' .
 		'<ul>' .
 			'<li>' . sprintf( __( 'On BOTH sites/ installations you have installed & activated for example the (great) %s child theme, plus the following plugins:', 'genesis-extra-settings-transporter' ), '&raquo;' . __( 'Curtail', 'genesis-extra-settings-transporter' ) . '&laquo;' ) . ' Genesis Layout Extras, Genesis Responsive Slider, Genesis Simple Hooks, Genesis Simple Sidebars.</li>' .
 			'<li>' . sprintf( __( 'On BOTH sites/ installations you have installed & activated this plugin, %s.', 'genesis-extra-settings-transporter' ), '&raquo;' . __( 'Genesis Extra Settings Transporter', 'genesis-extra-settings-transporter' ) . '&laquo;' ) . '</li>' .
@@ -151,15 +153,74 @@ function ddw_gest_help_content() {
 			'<li>' . sprintf( __( 'On the development install: Just make an Export file via %s admin page:', 'genesis-extra-settings-transporter' ), '&raquo;' . __( 'Genesis &#x2192; Import/Export', 'genesis-extra-settings-transporter' ) . '&laquo;' ) . '</li>' .
 			'<li>' . sprintf( __( 'In the %s section there enable all checkboxes you need.', 'genesis-extra-settings-transporter' ), '&raquo;' . __( 'Export', 'genesis-extra-settings-transporter' ) . '&laquo;' ) . '</li>' .
 			'<li>' . sprintf( __( 'Save the %s file to your computer.', 'genesis-extra-settings-transporter' ), '<code>.JSON</code>' ) . '</li>' .
-			'<li>' . sprintf( __( 'On the live/ production site, just import this %s file and you\'re done!', 'genesis-extra-settings-transporter' ), '<code>.JSON</code>' ) . ' ;-)</li>' .
+			'<li>' . sprintf( __( 'On the live/ production site, just import this %s file and you\'re done!', 'genesis-extra-settings-transporter' ), '<code>.JSON</code>' ) . '</li>' .
+		'</ul></blockquote>';
+
+	echo '<hr class="div" />';
+
+	echo '<p><strong>' . __( 'What is supported?', 'genesis-extra-settings-transporter' ) . '</strong></p>' .
+		'<ul>' .
+			'<li><a href="' . esc_url( GEST_URL_SUPPORTED_PLUGINS ). '" target="_new">' . __( 'List of all supported plugins', 'genesis-extra-settings-transporter' ) . '</a></li>' .
+			'<li><a href="' . esc_url( GEST_URL_SUPPORTED_CHILD_THEMES ). '" target="_new">' . __( 'List of all supported child themes', 'genesis-extra-settings-transporter' ) . '</a></li>' .
 		'</ul>';
 
-	echo '<p><strong>' . __( 'Important plugin links:', 'genesis-extra-settings-transporter' ) . '</strong>' . 
-		'<br /><a href="' . esc_url_raw( GEST_URL_PLUGIN ) . '" target="_new" title="' . __( 'Plugin website', 'genesis-extra-settings-transporter' ) . '">' . __( 'Plugin website', 'genesis-extra-settings-transporter' ) . '</a> | <a href="' . esc_url_raw( GEST_URL_WPORG_FAQ ) . '" target="_new" title="' . __( 'FAQ', 'genesis-extra-settings-transporter' ) . '">' . __( 'FAQ', 'genesis-extra-settings-transporter' ) . '</a> | <a href="' . esc_url_raw( GEST_URL_WPORG_FORUM ) . '" target="_new" title="' . __( 'Support', 'genesis-extra-settings-transporter' ) . '">' . __( 'Support', 'genesis-extra-settings-transporter' ) . '</a> | <a href="' . esc_url_raw( GEST_URL_TRANSLATE ) . '" target="_new" title="' . __( 'Translations', 'genesis-extra-settings-transporter' ) . '">' . __( 'Translations', 'genesis-extra-settings-transporter' ) . '</a> | <a href="' . esc_url_raw( GEST_URL_DONATE ) . '" target="_new" title="' . __( 'Donate', 'genesis-extra-settings-transporter' ) . '"><strong>' . __( 'Donate', 'genesis-extra-settings-transporter' ) . '</strong></a></p>';
+	echo '<hr class="div" />';
 
-	echo '<p><a href="http://www.opensource.org/licenses/gpl-license.php" target="_new" title="' . esc_attr( GEST_PLUGIN_LICENSE ). '">' . esc_attr( GEST_PLUGIN_LICENSE ). '</a> &copy; ' . date( 'Y' ) . ' <a href="' . esc_url_raw( ddw_gest_plugin_get_data( 'AuthorURI' ) ) . '" target="_new" title="' . esc_attr__( ddw_gest_plugin_get_data( 'Author' ) ) . '">' . esc_attr__( ddw_gest_plugin_get_data( 'Author' ) ) . '</a></p>';
+	echo ddw_gest_plugin_help_content_faq();
+
+	echo '<p><strong>' . __( 'Important plugin links:', 'genesis-extra-settings-transporter' ) . '</strong>' . 
+		'<br /><a href="' . esc_url( GEST_URL_PLUGIN ) . '" target="_new" title="' . __( 'Plugin website', 'genesis-extra-settings-transporter' ) . '">' . __( 'Plugin website', 'genesis-extra-settings-transporter' ) . '</a> | <a href="' . esc_url( GEST_URL_WPORG_FAQ ) . '" target="_new" title="' . __( 'FAQ', 'genesis-extra-settings-transporter' ) . '">' . __( 'FAQ', 'genesis-extra-settings-transporter' ) . '</a> | <a href="' . esc_url( GEST_URL_WPORG_FORUM ) . '" target="_new" title="' . __( 'Support', 'genesis-extra-settings-transporter' ) . '">' . __( 'Support', 'genesis-extra-settings-transporter' ) . '</a> | <a href="' . esc_url( GEST_URL_TRANSLATE ) . '" target="_new" title="' . __( 'Translations', 'genesis-extra-settings-transporter' ) . '">' . __( 'Translations', 'genesis-extra-settings-transporter' ) . '</a> | <a href="' . esc_url( GEST_URL_DONATE ) . '" target="_new" title="' . __( 'Donate', 'genesis-extra-settings-transporter' ) . '"><strong>' . __( 'Donate', 'genesis-extra-settings-transporter' ) . '</strong></a></p>';
+
+	echo '<p><a href="http://www.opensource.org/licenses/gpl-license.php" target="_new" title="' . esc_attr( GEST_PLUGIN_LICENSE ). '">' . esc_attr( GEST_PLUGIN_LICENSE ). '</a> &copy; ' . date( 'Y' ) . ' <a href="' . esc_url( ddw_gest_plugin_get_data( 'AuthorURI' ) ) . '" target="_new" title="' . esc_attr__( ddw_gest_plugin_get_data( 'Author' ) ) . '">' . esc_attr__( ddw_gest_plugin_get_data( 'Author' ) ) . '</a></p>';
 
 }  // end of function ddw_gest_help_tab
+
+
+/**
+ * Create and display plugin help tab content for "FAQ" part.
+ *
+ * @since 1.1.0
+ *
+ * @param $gest_faq_content_ss
+ * @param $gest_faq_content_wsie
+ * @param $gest_wsie_link
+ * @param $gest_wsie_status
+ * @param $gest_wsie_action
+ *
+ * @return string HTML help content FAQ.
+ */
+function ddw_gest_plugin_help_content_faq() {
+
+	if ( defined( 'SS_SETTINGS_FIELD' ) ) {
+
+		$gest_faq_content_ss = '<p><strong>' . sprintf( __( 'For the %s plugin: Why are inpost/ inpage settings not included?', 'genesis-extra-settings-transporter' ), '&raquo;' . __( 'Genesis Simple Sidebars', 'genesis-extra-settings-transporter' ) . '&laquo;' ) . '</strong><blockquote>' . sprintf( __( 'This is not possible as these settings belong to the actual post meta. You can always import & export all posts/ pages/ custom post types via %s, including those settings.', 'genesis-extra-settings-transporter' ), '<a href="' . admin_url( 'export.php' ). '">' . __( 'native WordPress export and import functionality', 'genesis-extra-settings-transporter' ) . '</a>' ) . '</blockquote></p>';
+
+	} else {
+
+		$gest_faq_content_ss = '';
+
+	}
+
+	/** WSIE Helper links/ strings */
+	if ( class_exists( 'Widget_Data' ) ) {
+
+		$gest_wsie_link = '<a href="' . admin_url( 'tools.php?page=widget-settings-export' ) . '">';
+		$gest_wsie_status = __( 'currently active', 'genesis-extra-settings-transporter' );
+		$gest_wsie_action = ' &rarr; <em><a href="' . admin_url( 'tools.php?page=widget-settings-export' ) . '">' . __( 'Export', 'genesis-extra-settings-transporter' ) . '</a> / <a href="' . admin_url( 'tools.php?page=widget-settings-import' ) . '">' . __( 'Import', 'genesis-extra-settings-transporter' ) . '</a></em>';
+
+	} else {
+
+		$gest_wsie_link = '<a href="http://wordpress.org/extend/plugins/widget-settings-importexport/" target="_new">';
+		$gest_wsie_status = __( 'not active/ installed', 'genesis-extra-settings-transporter' );
+		$gest_wsie_action = '';
+
+	}  // end-if WSIE plugin check
+
+	$gest_faq_content_wsie = '<p><strong>' . __( 'For Widget settings:', 'genesis-extra-settings-transporter' ) . '</strong><blockquote>' . sprintf( __( 'Not possible, there is no such functionality in WordPress core as is in Genesis yet! However, there\'s a nice third-party plugin for that, to use at your own risk: %s', 'genesis-extra-settings-transporter' ), $gest_wsie_link . __( 'Widget Settings Importer/Exporter', 'genesis-extra-settings-transporter' ) . '</a>' ) . $gest_wsie_action . ' <small>(' . __( 'Plugin', 'genesis-extra-settings-transporter' ) . ': ' . $gest_wsie_status . ')</small></blockquote></p>';
+
+	return apply_filters( 'gest_filter_help_faq_content', $gest_faq_content_ss . $gest_faq_content_wsie );
+
+}  // end of function ddw_gest_plugin_help_content_faq
 
 
 /**
@@ -176,8 +237,8 @@ function ddw_gest_help_content() {
 function ddw_gest_help_sidebar_content() {
 
 	$gest_help_sidebar_content = '<p><strong>' . __( 'More about the plugin author', 'genesis-extra-settings-transporter' ) . '</strong></p>' .
-			'<p>' . __( 'Social:', 'genesis-extra-settings-transporter' ) . '<br /><a href="http://twitter.com/deckerweb" target="_blank" title="@ Twitter">Twitter</a> | <a href="http://www.facebook.com/deckerweb.service" target="_blank" title="@ Facebook">Facebook</a> | <a href="http://deckerweb.de/gplus" target="_blank" title="@ Google+">Google+</a> | <a href="' . esc_url_raw( ddw_gest_plugin_get_data( 'AuthorURI' ) ) . '" target="_blank" title="@ deckerweb.de">deckerweb</a></p>' .
-			'<p><a href="' . esc_url_raw( GEST_URL_WPORG_PROFILE ) . '" target="_blank" title="@ WordPress.org">@ WordPress.org</a></p>';
+			'<p>' . __( 'Social:', 'genesis-extra-settings-transporter' ) . '<br /><a href="http://twitter.com/deckerweb" target="_blank" title="@ Twitter">Twitter</a> | <a href="http://www.facebook.com/deckerweb.service" target="_blank" title="@ Facebook">Facebook</a> | <a href="http://deckerweb.de/gplus" target="_blank" title="@ Google+">Google+</a> | <a href="' . esc_url( ddw_gest_plugin_get_data( 'AuthorURI' ) ) . '" target="_blank" title="@ deckerweb.de">deckerweb</a></p>' .
+			'<p><a href="' . esc_url( GEST_URL_WPORG_PROFILE ) . '" target="_blank" title="@ WordPress.org">@ WordPress.org</a></p>';
 
 	return apply_filters( 'gest_filter_help_sidebar_content', $gest_help_sidebar_content );
 

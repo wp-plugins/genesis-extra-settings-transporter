@@ -4,7 +4,7 @@ Donate link: http://genesisthemes.de/en/donate/
 Tags: genesis, genesiswp, genesis framework, settings, plugins, child themes, export, import, exporter, transport, transporter, data, deckerweb
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPL-2.0+
 License URI: http://www.opensource.org/licenses/gpl-license.php
 
@@ -13,13 +13,13 @@ Adds support for exporting settings of various Genesis Framework specific plugin
 == Description ==
 
 > #### Backup or Transfer Settings
-> Not only do backups or transfers of Genesis core settings but **also hook in official & third-party plugins** plus **some child themes**. Especially useful for developers to speed up their work!
+> Finally, not only do backups or transfers of Genesis core settings but **also hook in official & third-party plugins** plus **some child themes**. Especially useful for developers to speed up their work!
 > 
 > A great helper tool for Genesis child themes plus Genesis-specific plugins with their own **extra settings**!
 
 = Features, Advantages & Benefits =
-* Currently 17 different plugins are supported. (These being official ones plus third-party community plugins.)
-* Currently 53 different child themes with extra settings are supported. (These being all third-party child themes sold or downloadable via "StudioPress Community Marketplace" *or* elsewhere.)
+* Currently 21 different plugins are supported. (These being official ones plus third-party community plugins.)
+* Currently 55 different child themes with extra settings are supported. (These being all third-party child themes sold or downloadable via "StudioPress Community Marketplace" *or* elsewhere.)
 * Settings export for the first time possible for a lot of these plugins and/ or child themes!
 * Combined settings .JSON file, speeds up development especially!
 * Seperate plugin settings .JSON files could be useful for testing purposes for developers etc.
@@ -92,42 +92,67 @@ Please note: This plugin requires the Genesis Theme Framework.
 = What's the recommended usage of this plugin? =
 Just see plugin [description page](http://wordpress.org/extend/plugins/genesis-extra-settings-transporter/) for a typical workflow example.
 
+= "Genesis Simple Sidebars" plugin: Why are inpost/ inpage settings not included? =
+Good question, hehe :). Simple answer: not possible as these settings belong to the actual post meta. You can always import & export all posts/ pages/ custom post types via the NATIVE WORDPRESS export and import functionality. This applies for any inpost/ inpage/ CPT post meta settings in WordPress generally. All administrator users have access to "Tools" in the left-hand admin menu and could do exports and imports.
+
+= Why are Widget settings not included? =
+That's just not possible yet. Still, there is no such functionality in WordPress core as is in Genesis yet! However, there's a nice third-party plugin for that, to use at your own risk: ["Widget Settings Importer/Exporter"](http://wordpress.org/extend/plugins/widget-settings-importexport/)
+
 = Why isn't plugin/ child theme X,Y not supported? =
-I can only support plugins and child themes that use the Genesis settings API. Will more developers add this to their work I could add support in this helper plugin.
+I can only support plugins and child themes that make use of the WordPress/ Genesis settings API and use a settings field other than that from Genesis itself. Will more developers add this to their work I could add support in this helper plugin. It's as simple as that :).
 
 The way better alternative, though, is, when developers add that little hook in to the Genesis Exporter **natively**! In this case I might remove support here for such a plugin/ child theme, of course.
 
-= List of Supported Plugins =
-* Genesis Simple Hooks (free, by StudioPress)
-* Genesis Simple Sidebars (free, by StudioPress)
-* Genesis Slider (free, by StudioPress)
-* Genesis Responsive Slider (free, by StudioPress)
-* Genesis Simple Edits (free, by StudioPress)
-* Genesis Layout Extras (free, by David Decker - DECKERWEB)
-* Genesis Simple Comments (free, by Nick Croft)
-* Genesis Simple Breadcrumbs (free, by Nick Croft)
-* Genesis Responsive Header (free, by Nick Croft)
-* Genesis Grid Loop (free, by Bill Erickson)
-* Genesis Bootstrap Carousel (free, by Justin Tallant)
-* Genesis Widget Toggle (free, by Arya Prakasa)
-* Genesis Accordion (free, by Pat Ramsey)
-* Genesis Post Navigation (free, by Iniyan)
-* Genesis 404 Page (free, by Bill Erickson)
-* Genesis Design Palette (free, by Andrew Norcross)
-* Generate Box (free, by Hesham Zebida)
+Also note, some plugins have 1 or 2 little settings included in Genesis Theme Settings, therefore THESE settings are then included in the native Genesis export file. So you'll already have these safe for your exports and imports as well.
 
-= List of Supported Child Themes (free & premium) =
-* All by "Web Savvy Marketing, LLC", 19 by the time of plugin release (all premium)
-* All by "Themedy" brand (by Red Streams Consulting), 17 by the time of plugin release (1 free, other premium)
-* All by "Agent Evolution, LLC", 2 by the time of plugin release (all premium)
-* All by "GenesisAwesome" (aka Harish Dasari), 3 by the time of plugin release (all free)
-* 6 child themes by "ZigZagPress" brand: Bijou, Engrave, Showroom, Single, Solo, Vanilla (all premium)
-* "Curtail" (premium, by Thomas Griffin Media -- via studiopress.com)
-* "Genesis Sandbox" (free, by SureFireWebservice)
-* "AyoShop" v1.1+ (currently free, by AyoThemes)
-* "Dizain-01" (premium, by ThemeDizain)
-* "Radio" (free, by Greg Rickaby -- via GitHub.com)
-* "Egreen" (premium, by ThemeWolf)
+= What's up with the Prose child theme? =
+"Prose" natively includes its settings on the Genesis exporter page, so you're already hooked up! You can export and import all "Design Settings" at any time!
+
+= Some settings seem not to be included, what should I do? =
+Just make sure you have the very same versions of the plugins or child themes installed. If you have a development and live install, just make sure, both have "Genesis Simple Hooks, version 1.8.0.2" installed, to name an example. -- Reason: Sometimes setting field names could differ between different versions, or settings may be added or removed in newer/ older versions.
+
+= Hands down, how does it all work? =
+Just to clarify: This plugin here does NO export/ import ON ITS OWN! It just hooks in to the existing Genesis Exporter feature and leverages existing Genesis & WordPress functionality :).
+
+= Finally come on, what is supported in detail? =
+Just have look at the plugin & child theme listing:
+
+> #### List of Supported Plugins
+> * Genesis Simple Hooks (free, by StudioPress/Copyblogger Media LLC)
+> * Genesis Simple Sidebars (free, by StudioPress/Copyblogger Media LLC)
+> * Genesis Slider (free, by StudioPress/Copyblogger Media LLC)
+> * Genesis Responsive Slider (free, by StudioPress/Copyblogger Media LLC)
+> * Genesis Simple Edits (free, by StudioPress/Copyblogger Media LLC)
+> * Genesis Layout Extras (free, by David Decker - DECKERWEB)
+> * Genesis Simple Comments (free, by Nick Croft)
+> * Genesis Simple Breadcrumbs (free, by Nick Croft)
+> * Genesis Responsive Header (free, by Nick Croft)
+> * Genesis Grid Loop (free, by Bill Erickson)
+> * Genesis Bootstrap Carousel (free, by Justin Tallant)
+> * Genesis Widget Toggle (free, by Arya Prakasa)
+> * Genesis Accordion (free, by Pat Ramsey)
+> * Genesis Post Navigation (free, by Iniyan)
+> * Genesis 404 Page (free, by Bill Erickson)
+> * Genesis Design Palette (free, by Andrew Norcross)
+> * Generate Box (free, by Hesham Zebida)
+> * Genesis Custom Backgrounds (free, by Travis Smith)
+> * Genesis Custom Post Types Archives (free, by Travis Smith)
+> * Genesis Portfolio (free, by Travis Smith) (plugin currently in beta state!)
+> * *special bonus:* Premise, including "Member Access" module (premium, by Copyblogger Media LLC)
+> 
+> #### List of Supported Child Themes (free & premium)
+> * All by "Web Savvy Marketing, LLC", 19 by the time of plugin release (all premium)
+> * All by "Themedy" brand (by Red Streams Consulting), 17 by the time of plugin release (1 free, other premium)
+> * All by "Agent Evolution, LLC", 2 by the time of plugin release (all premium)
+> * All by "GenesisAwesome" (aka Harish Dasari), 3 by the time of plugin release (all free)
+> * 7 child themes by "ZigZagPress" brand: Bijou, Engrave, Megalithe, Showroom, Single, Solo, Vanilla (all premium)
+> * "Curtail" (premium, by Thomas Griffin Media -- via studiopress.com)
+> * "Genesis Sandbox" (free, by SureFireWebservice)
+> * "AyoShop" v1.1+ (currently free, by AyoThemes)
+> * "Dizain-01" (premium, by ThemeDizain)
+> * "Radio" (free, by Greg Rickaby -- via GitHub.com)
+> * "Egreen" (premium, by ThemeWolf)
+> * "Bigg" (free, by OD - OpenDesigns.org)
 
 == Screenshots ==
 
@@ -136,12 +161,23 @@ The way better alternative, though, is, when developers add that little hook in 
 
 == Changelog ==
 
+= 1.1.0 (2013-02-01) =
+* Added plugin support for "Genesis Custom Backgrounds", "Genesis Custom Post Types Archives" and "Genesis Portfolio" -- all free, by Travis Smith.
+* Added plugin support for "Premise" including its "Member Access" module -- Note: premium landing page plugin by Copyblogger Media LLC (same company as behind "Genesis" :).
+* Added child theme support for "Megalithe" v1.2+ -- premium, by ZigZagPress brand.
+* UPDATE: Extended and improved plugin's inline help info.
+* UPDATE: Updated readme.txt file here with improved instructions and extended FAQ section.
+* UPDATE: Updated German translations and also the .pot file for all translators!
+
 = 1.0.0 (2013-01-25) =
 * *Initial release*
 * Includes support for 17 different plugins.
 * Includes support for 53 different child themes.
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+Several additions & improvements: Extended plugin & child theme support. Improved plugin help info. Also updated German translations and .pot file for all translators.
 
 = 1.0.0 =
 Just released into the wild.
@@ -164,4 +200,4 @@ Enjoy using *Genesis Extra Settings Transporter*? Please consider [making a smal
 *Note:* All my plugins are internationalized/ translateable by default. This is very important for all users worldwide. So please contribute your language to the plugin to make it even more useful. For translating I recommend the awesome ["Codestyling Localization" plugin](http://wordpress.org/extend/plugins/codestyling-localization/) and for validating the ["Poedit Editor"](http://www.poedit.net/), which works fine on Windows, Mac and Linux.
 
 == Idea Behind / Philosophy ==
-Exporting and importing settings for plugins like "Genesis Simple Hooks" or my own "Genesis Layout Extras" plugin was always a "nice to have". Now, that I've found out Genesis had a filter for that - thanks to Gary Jones! - I just created this plugin. It's a small tool I need & use myself and I hope it helps other users and developers as well! :) ENJOY!
+Exporting and importing settings for plugins like "Genesis Simple Hooks" or my own "Genesis Layout Extras" plugin was always a "nice to have". Now, that I've found out Genesis had a filter for that - thanks to Genesis developer [Gary Jones](http://garyjones.co.uk/)! - I just created this plugin. It's a small tool I need & use myself and I hope it helps other users and developers as well! :) ENJOY!

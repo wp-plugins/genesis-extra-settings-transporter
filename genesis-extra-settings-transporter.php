@@ -5,13 +5,13 @@
  *
  * @package   Genesis Extra Settings Transporter
  * @author    David Decker
- * @link      http://twitter.com/deckerweb
- * @copyright Copyright 2013, David Decker - DECKERWEB
+ * @link      http://deckerweb.de/twitter
+ * @copyright Copyright (c) 2013, David Decker - DECKERWEB
  *
  * Plugin Name: Genesis Extra Settings Transporter
  * Plugin URI: http://genesisthemes.de/en/wp-plugins/genesis-extra-settings-transporter/
  * Description: Adds support for exporting settings of various Genesis Framework specific plugins & Child Themes via the Genesis Exporter feature.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: David Decker - DECKERWEB
  * Author URI: http://deckerweb.de/
  * License: GPL-2.0+
@@ -19,7 +19,7 @@
  * Text Domain: genesis-extra-settings-transporter
  * Domain Path: /languages/
  *
- * Copyright 2013 David Decker - DECKERWEB
+ * Copyright (c) 2013 David Decker - DECKERWEB
  *
  *     This file is part of Genesis Extra Settings Transporter,
  *     a plugin for WordPress.
@@ -134,13 +134,26 @@ function ddw_gest_init() {
 	/** Then look in plugin's "languages" folder = default */
 	load_plugin_textdomain( 'genesis-extra-settings-transporter', false, GEST_LANG_DIR );
 
+	/** Define constants and set defaults for enabling specific stuff */
+	if ( ! defined( 'GEST_NO_PREMISE_EXPORT' ) ) {
+		define( 'GEST_NO_PREMISE_EXPORT', FALSE );
+	}
+
 	/** Include admin & frontend functions when needed */
 	if ( is_admin() ) {
 
+		/** Include main admin functions */
 		require_once( GEST_PLUGIN_DIR . '/includes/gest-admin-functions.php' );
-		require_once( GEST_PLUGIN_DIR . '/includes/gest-admin-extras.php' );
 
-	}
+		/** Include optional "Premise" plugin support */
+		if ( ! GEST_NO_PREMISE_EXPORT && ! defined( 'PRST_PLUGIN_BASEDIR' ) && defined( 'PREMISE_SETTINGS_FIELD' ) ) {
+			require_once( GEST_PLUGIN_DIR . '/includes/gest-premise-functions.php' );
+		}
+
+		/** Include admin helper stuff */
+		require_once( GEST_PLUGIN_DIR . '/includes/gest-admin-extras.php' );
+		
+	}  // end-if is_admin() check
 
 	/** Add "Settings" links to plugin page */
 	if ( is_admin() && current_user_can( 'manage_options' ) ) {
