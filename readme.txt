@@ -165,6 +165,7 @@ Just have look at the plugin & child theme listing:
 * Added plugin support for "Genesis Custom Backgrounds", "Genesis Custom Post Types Archives" and "Genesis Portfolio" -- all free, by Travis Smith.
 * Added plugin support for "Premise" including its "Member Access" module -- Note: premium landing page plugin by Copyblogger Media LLC (same company as behind "Genesis" :).
 * Added child theme support for "Megalithe" v1.2+ -- premium, by ZigZagPress brand.
+* Added child theme support for "Bigg" -- free, by OD - OpenDesigns.org.
 * UPDATE: Extended and improved plugin's inline help info.
 * UPDATE: Updated readme.txt file here with improved instructions and extended FAQ section.
 * UPDATE: Updated German translations and also the .pot file for all translators!
