@@ -11,7 +11,7 @@
  * Plugin Name: Genesis Extra Settings Transporter
  * Plugin URI: http://genesisthemes.de/en/wp-plugins/genesis-extra-settings-transporter/
  * Description: Adds support for exporting settings of various Genesis Framework specific plugins & Child Themes via the Genesis Exporter feature.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: David Decker - DECKERWEB
  * Author URI: http://deckerweb.de/
  * License: GPL-2.0+
@@ -68,13 +68,13 @@ register_activation_hook( __FILE__, 'ddw_gest_activation' );
  *   - Requirement: Genesis Framework needs to be installed and activated.
  *   - Note: register_activation_hook() isn't run after auto or manual upgrade, only on activation!
  *
- * @since 1.0.0
+ * @since  1.0.0
  *
- * @uses load_plugin_textdomain()
- * @uses deactivate_plugins()
- * @uses wp_die()
+ * @uses   load_plugin_textdomain()
+ * @uses   deactivate_plugins()
+ * @uses   wp_die()
  *
- * @param $gest_genesis_deactivation_message
+ * @param  $gest_genesis_deactivation_message
  *
  * @return string Optional plugin activation messages for the user.
  */
@@ -121,18 +121,12 @@ add_action( 'init', 'ddw_gest_init' );
  * Load the textdomain for translation of the plugin.
  * Load admin helper functions - only within 'wp-admin'.
  *
- * @uses load_plugin_textdomain()
- * @uses is_admin()
+ * @uses  load_plugin_textdomain()
+ * @uses  is_admin()
  *
  * @since 1.0.0
  */
 function ddw_gest_init() {
-
-	/** First look in WordPress' "languages" folder = custom & update-secure! */
-	load_plugin_textdomain( 'genesis-extra-settings-transporter', false, GEST_WP_LANG_DIR );
-
-	/** Then look in plugin's "languages" folder = default */
-	load_plugin_textdomain( 'genesis-extra-settings-transporter', false, GEST_LANG_DIR );
 
 	/** Define constants and set defaults for enabling specific stuff */
 	if ( ! defined( 'GEST_NO_PREMISE_EXPORT' ) ) {
@@ -141,6 +135,12 @@ function ddw_gest_init() {
 
 	/** Include admin & frontend functions when needed */
 	if ( is_admin() ) {
+
+		/** First look in WordPress' "languages" folder = custom & update-secure! */
+		load_plugin_textdomain( 'genesis-extra-settings-transporter', false, GEST_WP_LANG_DIR );
+
+		/** Then look in plugin's "languages" folder = default */
+		load_plugin_textdomain( 'genesis-extra-settings-transporter', false, GEST_LANG_DIR );
 
 		/** Include main admin functions */
 		require_once( GEST_PLUGIN_DIR . '/includes/gest-admin-functions.php' );
@@ -175,19 +175,25 @@ function ddw_gest_init() {
 /**
  * Returns current plugin's header data in a flexible way.
  *
- * @since 1.0.0
+ * @since  1.0.0
  *
- * @uses get_plugins()
- * @uses plugin_basename()
+ * @uses   get_plugins()
+ * @uses   plugin_basename()
  *
- * @param $gest_plugin_value
- * @param $gest_plugin_folder
- * @param $gest_plugin_file
+ * @param  $gest_plugin_value
+ * @param  $gest_plugin_folder
+ * @param  $gest_plugin_file
  *
  * @return string Plugin data.
  */
 function ddw_gest_plugin_get_data( $gest_plugin_value ) {
 
+	/** Bail early if we are not in wp-admin */
+	if ( ! is_admin() ) {
+		return;
+	}
+
+	/** Include WordPress plugin data */
 	if ( ! function_exists( 'get_plugins' ) ) {
 		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	}

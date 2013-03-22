@@ -10,13 +10,15 @@
  * @link       http://genesisthemes.de/en/wp-plugins/genesis-extra-settings-transporter/
  * @link       http://deckerweb.de/twitter
  *
- * @since 1.0.0
+ * @since      1.0.0
  */
 
 /**
  * Setting internal plugin helper links constants.
  *
  * @since 1.0.0
+ *
+ * @uses  get_locale()
  */
 define( 'GEST_URL_TRANSLATE',		'http://translate.wpautobahn.com/projects/genesis-plugins-deckerweb/genesis-extra-settings-transporter' );
 define( 'GEST_URL_WPORG_FAQ',		'http://wordpress.org/extend/plugins/genesis-extra-settings-transporter/faq/' );
@@ -37,7 +39,7 @@ if ( get_locale() == 'de_DE' || get_locale() == 'de_AT' || get_locale() == 'de_C
 /**
  * Add "Widgets Page" link to plugin page.
  *
- * @since 1.0.0
+ * @since  1.0.0
  *
  * @param  $gest_links
  * @param  $gest_settings_link
@@ -62,7 +64,7 @@ add_filter( 'plugin_row_meta', 'ddw_gest_plugin_links', 10, 2 );
 /**
  * Add various support links to plugin page.
  *
- * @since 1.0.0
+ * @since  1.0.0
  *
  * @param  $gest_links
  * @param  $gest_file
@@ -98,7 +100,12 @@ add_action( 'load-genesis_page_genesis-import-export', 'ddw_gest_help_tab' );	//
 /**
  * Create and display plugin help tab.
  *
- * @since 1.0.0
+ * @since  1.0.0
+ *
+ * @uses   get_current_screen()
+ * @uses   WP_Screen::add_help_tab()
+ * @uses   WP_Screen::set_help_sidebar()
+ * @uses   ddw_gest_help_sidebar_content()
  *
  * @global mixed $gest_exporter_screen
  */
@@ -134,7 +141,7 @@ function ddw_gest_help_tab() {
  *
  * @since 1.0.0
  *
- * @uses ddw_gest_plugin_get_data() To display various data of this plugin.
+ * @uses  ddw_gest_plugin_get_data() To display various data of this plugin.
  */
 function ddw_gest_help_content() {
 
@@ -179,13 +186,13 @@ function ddw_gest_help_content() {
 /**
  * Create and display plugin help tab content for "FAQ" part.
  *
- * @since 1.1.0
+ * @since  1.1.0
  *
- * @param $gest_faq_content_ss
- * @param $gest_faq_content_wsie
- * @param $gest_wsie_link
- * @param $gest_wsie_status
- * @param $gest_wsie_action
+ * @param  $gest_faq_content_ss
+ * @param  $gest_faq_content_wsie
+ * @param  $gest_wsie_link
+ * @param  $gest_wsie_status
+ * @param  $gest_wsie_action
  *
  * @return string HTML help content FAQ.
  */
@@ -226,11 +233,11 @@ function ddw_gest_plugin_help_content_faq() {
 /**
  * Helper function for returning the Help Sidebar content.
  *
- * @since 1.0.0
+ * @since  1.0.0
  *
- * @uses ddw_gest_plugin_get_data()
+ * @uses   ddw_gest_plugin_get_data()
  *
- * @param $gest_help_sidebar_content
+ * @param  $gest_help_sidebar_content
  *
  * @return string HTML content for help sidebar.
  */

@@ -10,7 +10,7 @@
  * @link       http://genesisthemes.de/en/wp-plugins/genesis-extra-settings-transporter/
  * @link       http://deckerweb.de/twitter
  *
- * @since 1.1.0
+ * @since      1.1.0
  */
 
 add_filter( 'genesis_export_options', 'ddw_gest_premise_export_additions', 17, 1 );
@@ -18,9 +18,9 @@ add_filter( 'genesis_export_options', 'ddw_gest_premise_export_additions', 17, 1
 * Hook the "Premise" premium plugin (inclucing its "Member Access" module) into
 *    the "Genesis Exporter", allowing those settings to be exported.
 *
-* @since 1.1.0
+* @since  1.1.0
 *
-* @param array $options Genesis Exporter options.
+* @param  array $options Genesis Exporter options.
 *
 * @return array
 */

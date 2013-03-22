@@ -4,7 +4,7 @@ Donate link: http://genesisthemes.de/en/donate/
 Tags: genesis, genesiswp, genesis framework, settings, plugins, child themes, export, import, exporter, transport, transporter, data, deckerweb
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPL-2.0+
 License URI: http://www.opensource.org/licenses/gpl-license.php
 
@@ -18,8 +18,8 @@ Adds support for exporting settings of various Genesis Framework specific plugin
 > A great helper tool for Genesis child themes plus Genesis-specific plugins with their own **extra settings**!
 
 = Features, Advantages & Benefits =
-* Currently 21 different plugins are supported. (These being official ones plus third-party community plugins.)
-* Currently 55 different child themes with extra settings are supported. (These being all third-party child themes sold or downloadable via "StudioPress Community Marketplace" *or* elsewhere.)
+* Currently 24 different plugins are supported. (These being official ones plus third-party community plugins.)
+* Currently 58 different child themes with extra settings are supported. (These being all third-party child themes sold or downloadable via "StudioPress Community Marketplace" *or* elsewhere.)
 * Settings export for the first time possible for a lot of these plugins and/ or child themes!
 * Combined settings .JSON file, speeds up development especially!
 * Seperate plugin settings .JSON files could be useful for testing purposes for developers etc.
@@ -138,6 +138,9 @@ Just have look at the plugin & child theme listing:
 > * Genesis Custom Backgrounds (free, by Travis Smith)
 > * Genesis Custom Post Types Archives (free, by Travis Smith)
 > * Genesis Portfolio (free, by Travis Smith) (plugin currently in beta state!)
+> * WP Genesis Box (free, by Jimmy Peña)
+> * Dynamic Content Gallery (DCG) (free, by Adew Walker/ studiograsshopper.ch) - from the Genesis ecosystem :)
+> * WP-Cycle (free, by Nathan Rice) - from the Genesis ecosystem :)
 > * *special bonus:* Premise, including "Member Access" module (premium, by Copyblogger Media LLC)
 > 
 > #### List of Supported Child Themes (free & premium)
@@ -145,9 +148,10 @@ Just have look at the plugin & child theme listing:
 > * All by "Themedy" brand (by Red Streams Consulting), 17 by the time of plugin release (1 free, other premium)
 > * All by "Agent Evolution, LLC", 2 by the time of plugin release (all premium)
 > * All by "GenesisAwesome" (aka Harish Dasari), 3 by the time of plugin release (all free)
-> * 7 child themes by "ZigZagPress" brand: Bijou, Engrave, Megalithe, Showroom, Single, Solo, Vanilla (all premium)
+> * 9 child themes by "ZigZagPress" brand: Bijou, Engrave, Eshop, Megalithe, Showroom, Single, Solo, Tequila, Vanilla (all premium)
 > * "Curtail" (premium, by Thomas Griffin Media -- via studiopress.com)
-> * "Genesis Sandbox" (free, by SureFireWebservice)
+> * "Genesis Sandbox" (free, by SureFireWebservice & Travis Smith)
+> * "Sandbox Theme" (premium, by SureFire Themes brand)
 > * "AyoShop" v1.1+ (currently free, by AyoThemes)
 > * "Dizain-01" (premium, by ThemeDizain)
 > * "Radio" (free, by Greg Rickaby -- via GitHub.com)
@@ -160,6 +164,16 @@ Just have look at the plugin & child theme listing:
 2. Genesis Extra Settings Transporter: plugin help tab. ([Click here for larger version of screenshot](https://www.dropbox.com/s/anio9js893294q0/screenshot-2.png))
 
 == Changelog ==
+
+= 1.2.0 (2013-03-22) =
+* NEW: Added plugin support for "WP Genesis Box" -- free, by Jimmy Peña.
+* NEW: Added plugin support for "Dynamic Content Gallery (DCG)" (free, by Adew Walker/ studiograsshopper.ch) - from the Genesis ecosystem :).
+* NEW: Added plugin support for "WP-Cycle" (free, by Nathan Rice) - from the Genesis ecosystem :).
+* NEW: Added child theme support for "Sandbox Theme" -- premium, by Surefire Themes brand.
+* NEW: Added child theme support for "Eshop" and "Tequila" -- both are premium, by ZigZagPress brand.
+* UPDATE: Load translations only within admin area to further improve performance.
+* CODE: Minor code/documentation updates & improvements.
+* UPDATE: Updated German translations and also the .pot file for all translators!
 
 = 1.1.0 (2013-02-01) =
 * Added plugin support for "Genesis Custom Backgrounds", "Genesis Custom Post Types Archives" and "Genesis Portfolio" -- all free, by Travis Smith.
@@ -176,6 +190,9 @@ Just have look at the plugin & child theme listing:
 * Includes support for 53 different child themes.
 
 == Upgrade Notice ==
+
+= 1.2.0 =
+Several additions & improvements: Extended plugin & child theme support. Code improvements. Also updated German translations and .pot file for all translators.
 
 = 1.1.0 =
 Several additions & improvements: Extended plugin & child theme support. Improved plugin help info. Also updated German translations and .pot file for all translators.

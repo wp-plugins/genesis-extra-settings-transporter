@@ -10,7 +10,7 @@
  * @link       http://genesisthemes.de/en/wp-plugins/genesis-extra-settings-transporter/
  * @link       http://deckerweb.de/twitter
  *
- * @since 1.0.0
+ * @since      1.0.0
  */
 
 add_filter( 'genesis_export_options', 'ddw_gest_plugins_export_additions', 15, 1 );
@@ -18,13 +18,16 @@ add_filter( 'genesis_export_options', 'ddw_gest_plugins_export_additions', 15, 1
 * Hook official & third-party Genesis-specific plugins into "Genesis Exporter",
 *    allowing their settings to be exported.
 *
-* @since 1.0.0
+* @since  1.0.0
 *
-* @param $gest_plugin_string
-* @param $gest_plugin_prefix
-* @param $gest_plugin_suffix_studiopress
-* @param $gest_plugin_suffix_other
-* @param array $options Genesis Exporter options.
+* @param  $gest_plugin_string
+* @param  $gest_plugin_prefix
+* @param  $gest_plugin_suffix_studiopress
+* @param  $gest_plugin_suffix_other
+* @param  $gest_plugins_notice
+* @param  array $options Genesis Exporter options.
+*
+* @global mixed $gest_plugins_notice
 *
 * @return array
 */
@@ -38,6 +41,13 @@ function ddw_gest_plugins_export_additions( array $options ) {
 
 	define( 'GEST_PLUGIN_STRING', $gest_plugin_string );
 
+
+	/** Helper variable for checking active supported plugins */
+	global $gest_plugins_notice;
+
+	$gest_plugins_notice = 'no_plugins_active';
+
+
 	/**
 	 * 1) StudioPress official stuff:
 	 */
@@ -50,6 +60,8 @@ function ddw_gest_plugins_export_additions( array $options ) {
 			'settings-field' => SIMPLEHOOKS_SETTINGS_FIELD
 		);
 
+		$gest_plugins_notice = 'plugins_active';
+
 	}
 
 	/** Genesis Simple Sidebars (gss) - free by StudioPress */
@@ -59,6 +71,8 @@ function ddw_gest_plugins_export_additions( array $options ) {
 			'label'          => $gest_plugin_prefix . __( 'Genesis Simple Sidebars', 'genesis-extra-settings-transporter' ) . $gest_plugin_suffix_studiopress,
 			'settings-field' => SS_SETTINGS_FIELD
 		);
+
+		$gest_plugins_notice = 'plugins_active';
 
 	}
 
@@ -70,6 +84,8 @@ function ddw_gest_plugins_export_additions( array $options ) {
 			'settings-field' => GENESIS_SLIDER_SETTINGS_FIELD
 		);
 
+		$gest_plugins_notice = 'plugins_active';
+
 	}
 
 	/** Genesis Responsive Slider (grs) - free by StudioPress */
@@ -79,6 +95,8 @@ function ddw_gest_plugins_export_additions( array $options ) {
 			'label'          => $gest_plugin_prefix . __( 'Genesis Responsive Slider', 'genesis-extra-settings-transporter' ) . $gest_plugin_suffix_studiopress,
 			'settings-field' => GENESIS_RESPONSIVE_SLIDER_SETTINGS_FIELD
 		);
+
+		$gest_plugins_notice = 'plugins_active';
 
 	}
 
@@ -90,6 +108,8 @@ function ddw_gest_plugins_export_additions( array $options ) {
 			'settings-field' => GSE_SETTINGS_FIELD
 		);
 
+		$gest_plugins_notice = 'plugins_active';
+
 	}
 
 	/**
@@ -97,12 +117,14 @@ function ddw_gest_plugins_export_additions( array $options ) {
 	 */
 
 	/** Genesis Layout Extras (gle) - free, by David Decker */
-	if ( defined( 'GLE_SETTINGS_FIELD' ) ) {
+	if ( ! function_exists( 'ddw_gle_export_options' ) && defined( 'GLE_SETTINGS_FIELD' ) ) {
 
 		$options[ 'gle' ] = array(
 			'label'          => $gest_plugin_prefix . __( 'Genesis Layout Extras', 'genesis-extra-settings-transporter' ) . $gest_plugin_suffix_other,
 			'settings-field' => GLE_SETTINGS_FIELD
 		);
+
+		$gest_plugins_notice = 'plugins_active';
 
 	}
 
@@ -114,6 +136,8 @@ function ddw_gest_plugins_export_additions( array $options ) {
 			'settings-field' => GSC_SETTINGS_FIELD
 		);
 
+		$gest_plugins_notice = 'plugins_active';
+
 	}
 
 	/** Genesis Simple Breadcrumbs (gsb) - free, by Nick Croft */
@@ -123,6 +147,8 @@ function ddw_gest_plugins_export_additions( array $options ) {
 			'label'          => $gest_plugin_prefix . __( 'Genesis Simple Breadcrumbs', 'genesis-extra-settings-transporter' ) . $gest_plugin_suffix_other,
 			'settings-field' => GSB_SETTINGS_FIELD
 		);
+
+		$gest_plugins_notice = 'plugins_active';
 
 	}
 
@@ -134,6 +160,8 @@ function ddw_gest_plugins_export_additions( array $options ) {
 			'settings-field' => GRH_SETTINGS_FIELD
 		);
 
+		$gest_plugins_notice = 'plugins_active';
+
 	}
 
 	/** Genesis Grid Loop (ggl) - free, by Bill Erickson */
@@ -143,6 +171,8 @@ function ddw_gest_plugins_export_additions( array $options ) {
 			'label'          => $gest_plugin_prefix . __( 'Genesis Grid Loop', 'genesis-extra-settings-transporter' ) . $gest_plugin_suffix_other,
 			'settings-field' => 'genesis-grid'
 		);
+
+		$gest_plugins_notice = 'plugins_active';
 
 	}
 
@@ -154,6 +184,8 @@ function ddw_gest_plugins_export_additions( array $options ) {
 			'settings-field' => GENESIS_BOOTSTRAP_CAROUSEL_SETTINGS_FIELD
 		);
 
+		$gest_plugins_notice = 'plugins_active';
+
 	}
 
 	/** Genesis Widget Toggle (gwt) - free, by Arya Prakasa */
@@ -163,6 +195,8 @@ function ddw_gest_plugins_export_additions( array $options ) {
 			'label'          => $gest_plugin_prefix . __( 'Genesis Widget Toggle', 'genesis-extra-settings-transporter' ) . $gest_plugin_suffix_other,
 			'settings-field' => GWT_SETTINGS_FIELD
 		);
+
+		$gest_plugins_notice = 'plugins_active';
 
 	}
 
@@ -174,6 +208,8 @@ function ddw_gest_plugins_export_additions( array $options ) {
 			'settings-field' => GENESIS_ACCORDION_SETTINGS_FIELD
 		);
 
+		$gest_plugins_notice = 'plugins_active';
+
 	}
 
 	/** Genesis Post Navigation (gpn) - free, by Iniyan */
@@ -183,6 +219,8 @@ function ddw_gest_plugins_export_additions( array $options ) {
 			'label'          => $gest_plugin_prefix . __( 'Genesis Post Navigation', 'genesis-extra-settings-transporter' ) . $gest_plugin_suffix_other,
 			'settings-field' => GPN_SETTINGS_FIELD
 		);
+
+		$gest_plugins_notice = 'plugins_active';
 
 	}
 
@@ -194,6 +232,8 @@ function ddw_gest_plugins_export_additions( array $options ) {
 			'settings-field' => 'genesis-404'
 		);
 
+		$gest_plugins_notice = 'plugins_active';
+
 	}
 
 	/** Genesis Design Palette (gdp) - free, by Andrew Norcross */
@@ -203,6 +243,8 @@ function ddw_gest_plugins_export_additions( array $options ) {
 			'label'          => $gest_plugin_prefix . __( 'Genesis Design Palette', 'genesis-extra-settings-transporter' ) . $gest_plugin_suffix_other,
 			'settings-field' => GS_SETTINGS_FIELD
 		);
+
+		$gest_plugins_notice = 'plugins_active';
 
 	}
 
@@ -214,6 +256,8 @@ function ddw_gest_plugins_export_additions( array $options ) {
 			'settings-field' => generatebox_SETTINGS_FIELD
 		);
 
+		$gest_plugins_notice = 'plugins_active';
+
 	}
 
 	/** Genesis Custom Backgrounds (gcbg) - free, by Travis Smith */
@@ -224,6 +268,8 @@ function ddw_gest_plugins_export_additions( array $options ) {
 			'settings-field' => GCB_SETTINGS_FIELD
 		);
 
+		$gest_plugins_notice = 'plugins_active';
+
 	}
 
 	/** Genesis Portfolio (gpfl) - free, by Travis Smith */
@@ -233,6 +279,8 @@ function ddw_gest_plugins_export_additions( array $options ) {
 			'label'          => $gest_plugin_prefix . __( 'Genesis Portfolio', 'genesis-extra-settings-transporter' ) . $gest_plugin_suffix_other,
 			'settings-field' => 'minfolio-portfolio-settings'
 		);
+
+		$gest_plugins_notice = 'plugins_active';
 
 	}
 
@@ -253,7 +301,51 @@ function ddw_gest_plugins_export_additions( array $options ) {
 
 		}  // end foreach
 
+		$gest_plugins_notice = 'plugins_active';
+
 	}  // end-if
+
+	/** WP Genesis Box (wpgb) - free, by Jimmy Peña */
+	if ( defined( 'WPGB_DEFAULT_ENABLED' ) ) {
+
+		$options[ 'wpgb' ] = array(
+			'label'          => $gest_plugin_prefix . __( 'WP Genesis Box', 'genesis-extra-settings-transporter' ) . $gest_plugin_suffix_other,
+			'settings-field' => 'wp_genesis_box'
+		);
+
+		$gest_plugins_notice = 'plugins_active';
+
+	}
+
+
+	/**
+	 * 3) Third party stuff - Genesis ecosystem:
+	 */
+
+	/** Dynamic Content Gallery [DCG] (dcg) - free, by Adew Walker/ studiograsshopper.ch */
+	if ( defined( 'DFCG_DOMAIN' ) ) {
+
+		$options[ 'dcg' ] = array(
+			'label'          => $gest_plugin_prefix . __( 'Dynamic Content Gallery (DCG)', 'genesis-extra-settings-transporter' ) . $gest_plugin_suffix_other,
+			'settings-field' => 'dfcg_plugin_settings'
+		);
+
+		$gest_plugins_notice = 'plugins_active';
+
+	}
+
+	/** WP-Cycle - free, by Nathan Rice */
+	if ( function_exists( 'wp_cycle_register_settings' ) ) {
+
+		$options[ 'wpcycle' ] = array(
+			'label'          => $gest_plugin_prefix . __( 'WP-Cycle', 'genesis-extra-settings-transporter' ) . $gest_plugin_suffix_other,
+			'settings-field' => 'wp_cycle_settings'
+		);
+
+		$gest_plugins_notice = 'plugins_active';
+		
+	}
+
 
 	/** Return the additional (plugins) settings fields to hook into the Genesis Exporter */
 	return $options;
@@ -266,15 +358,17 @@ add_filter( 'genesis_export_options', 'ddw_gest_child_themes_export_additions', 
 * Hook official & third-party Genesis child themes into "Genesis Exporter",
 *    allowing their settings to be exported.
 *
-* @since 1.0.0
+* @since  1.0.0
 *
-* @param $gest_child_theme_string
-* @param $gest_child_theme_prefix
-* @param $gest_theme_settings
-* @param $gest_footer_settings
-* @param $gest_child_theme_suffix_spmarket
-* @param $gest_child_theme_suffix_other
-* @param array $options Genesis Exporter options.
+* @param  $gest_child_theme_string
+* @param  $gest_child_theme_prefix
+* @param  $gest_theme_settings
+* @param  $gest_footer_settings
+* @param  $gest_child_theme_suffix_spmarket
+* @param  $gest_child_theme_suffix_other
+* @param  array $options Genesis Exporter options.
+*
+* @global mixed $gest_ct_notice
 *
 * @return array
 */
@@ -290,6 +384,13 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 
 	define( 'GEST_CHILD_THEME_STRING', $gest_child_theme_string );
 
+
+	/** Helper variable for checking active supported child themes */
+	global $gest_ct_notice;
+
+	$gest_ct_notice = 'no_child_themes';
+
+
 	/**
 	 * 1) Community/ Markeptlace child themes (via studiopress.com)
 	 */
@@ -302,19 +403,37 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => CURTAIL_SETTINGS_FIELD
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/**
 	 * 2) Third-party child themes (via other sources)
 	 */
 
-	/** Genesis Sandbox (free, by SureFireWebservice) - version 1.1+ required! */
+	/** Genesis Sandbox (free, by SureFireWebservice & Travis Smith) - version 1.1.0+ required! */
 	if ( class_exists( 'Genesis_Sandbox_Settings' ) && defined( 'CHILD_SETTINGS_FIELD' ) ) {
 
 		$options[ 'ctgsandbox' ] = array(
 			'label'          => $gest_child_theme_prefix . 'Genesis Sandbox' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => CHILD_SETTINGS_FIELD
 		);
+
+		$gest_ct_notice = 'ct_active';
+
+	}
+
+	/** Genesis Sandbox (free, by SureFireWebservice) - version 1.1+ required! */
+	if ( class_exists( 'Genesis_Sandbox_Settings' )
+		&& ( defined( 'CHILD_THEME_NAME' ) && 'Sandbox Theme' == CHILD_THEME_NAME )
+	) {
+
+		$options[ 'ctgsandboxth' ] = array(
+			'label'          => $gest_child_theme_prefix . 'Sandbox Theme' . $gest_theme_settings . $gest_child_theme_suffix_other,
+			'settings-field' => CHILD_SETTINGS_FIELD
+		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -326,6 +445,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => 'ayo_theme_customizer'
 		);
 
+		$gest_ct_notice = 'ct_active';
+		
 	}
 
 	/** Dizain-01 (premium, by ThemeDizain) */
@@ -336,6 +457,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => 'option_tree'
 		);
 
+		$gest_ct_notice = 'ct_active';
+		
 	}
 
 	/** Radio (free, by Greg Rickaby) */
@@ -345,6 +468,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Radio' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => 'child-settings'
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -356,6 +481,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => 'curbappeal-footer-settings'
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Turn Key (premium, by Agent Evolution) */
@@ -365,6 +492,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Turn Key' . $gest_footer_settings . $gest_child_theme_suffix_other,
 			'settings-field' => 'turnkey-footer-settings'
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -376,6 +505,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => 'tw-egreen-settings'
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Dedicated (free, by GenesisAwesome) */
@@ -385,6 +516,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Dedicated' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => GA_CHILDTHEME_FIELD
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -396,6 +529,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => GA_CHILDTHEME_FIELD
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Portlight (free, by GenesisAwesome) */
@@ -406,6 +541,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => GA_CHILDTHEME_FIELD
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Bigg (free, by OD - OpenDesigns.org) */
@@ -415,6 +552,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Bigg' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => GSSETTINGS_SETTINGS_FIELD
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -430,6 +569,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => 'alexandra-settings'
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Anneliese */
@@ -439,6 +580,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Anneliese' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => 'anneliese-settings'
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -450,6 +593,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => 'child-settings'
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Christian */
@@ -459,6 +604,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Christian' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => 'christian-settings'
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -470,6 +617,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => 'colin-settings'
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Dagmar */
@@ -479,6 +628,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Dagmar' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => 'dagmar-settings'
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -490,6 +641,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => 'daniel-settings'
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Ellen Mae */
@@ -499,6 +652,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Ellen' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => 'ellen-settings'
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -510,6 +665,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => 'erik-settings'
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Elsa */
@@ -519,6 +676,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Elsa' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => ELSA_SETTINGS_FIELD
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -530,6 +689,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => 'frederik-settings'
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Hans */
@@ -539,6 +700,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Hans' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => 'hans-settings'
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -550,6 +713,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => 'kathryn-settings'
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Lillian */
@@ -559,6 +724,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Lillian' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => 'lillian-settings'
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -570,6 +737,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => 'mariah-settings'
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Nancy */
@@ -579,6 +748,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Nancy' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => 'nancy-settings'
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -590,6 +761,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => RASMUS_SETTINGS_FIELD
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Robert */
@@ -600,6 +773,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => 'robert-settings'
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Soren */
@@ -609,6 +784,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Soren' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => WSM_SETTINGS_FIELD
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -624,6 +801,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => BLINK_SETTINGS_FIELD
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** CinchPress */
@@ -633,6 +812,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'CinchPress' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => CINCHPRESS_SETTINGS_FIELD
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -644,6 +825,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => CLIPCART_SETTINGS_FIELD
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Derby */
@@ -653,6 +836,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Derby' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => DERBY_SETTINGS_FIELD
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -664,6 +849,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => FEEDPOP_SETTINGS_FIELD
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Foxy News */
@@ -673,6 +860,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Foxy News' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => FOXYNEWS_SETTINGS_FIELD
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -684,6 +873,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => FREMEDY_SETTINGS_FIELD
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Grind */
@@ -693,6 +884,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Grind' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => GRIND_SETTINGS_FIELD
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -704,6 +897,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => LINEITUP_SETTINGS_FIELD
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** MockFive */
@@ -713,6 +908,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'MockFive' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => MOCKFIVE_SETTINGS_FIELD
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -724,6 +921,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => QUIK_SETTINGS_FIELD
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Reactiv */
@@ -734,15 +933,19 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => REACTIV_SETTINGS_FIELD
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
-	/** Readyfolio */
+	/** Readyfolio v1.x & v2.x */
 	if ( defined( 'READYFOLIO_SETTINGS_FIELD' ) ) {
 
 		$options[ 'ctreadyfolio' ] = array(
 			'label'          => $gest_child_theme_prefix . 'Readyfolio' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => READYFOLIO_SETTINGS_FIELD
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -754,6 +957,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => ROUGHPRINT_SETTINGS_FIELD
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Smooth Post */
@@ -763,6 +968,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Smooth Post' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => SMOOTHPOST_SETTINGS_FIELD
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -774,6 +981,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => STAGE_SETTINGS_FIELD
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Tote */
@@ -783,6 +992,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Tote' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => TOTE_SETTINGS_FIELD
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -798,6 +1009,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => 'of_template'
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Engrave */
@@ -807,6 +1020,20 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Engrave' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => 'of_template'
 		);
+
+		$gest_ct_notice = 'ct_active';
+
+	}
+
+	/** Eshop */
+	if ( defined( 'CHILD_THEME_NAME' ) && ( 'Eshop' == CHILD_THEME_NAME ) ) {
+
+		$options[ 'cteshop' ] = array(
+			'label'          => $gest_child_theme_prefix . 'Eshop' . $gest_theme_settings . $gest_child_theme_suffix_other,
+			'settings-field' => 'zp_template'
+		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -818,6 +1045,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => 'of_template'
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Showroom */
@@ -827,6 +1056,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'label'          => $gest_child_theme_prefix . 'Showroom' . $gest_theme_settings . $gest_child_theme_suffix_other,
 			'settings-field' => 'of_template'
 		);
+
+		$gest_ct_notice = 'ct_active';
 
 	}
 
@@ -838,6 +1069,8 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => 'of_template'
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
 	/** Solo */
@@ -848,8 +1081,22 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => 'of_template'
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
 
+	/** Tequila */
+	if ( defined( 'ZP_SETTINGS_FIELD' ) && ( defined( 'CHILD_THEME_NAME' ) && ( 'Tequila' == CHILD_THEME_NAME ) ) ) {
+
+		$options[ 'cttequila' ] = array(
+			'label'          => $gest_child_theme_prefix . 'Tequila' . $gest_theme_settings . $gest_child_theme_suffix_other,
+			'settings-field' => ZP_SETTINGS_FIELD
+		);
+
+		$gest_ct_notice = 'ct_active';
+
+	}
+	
 	/** Vanilla */
 	if ( defined( 'CHILD_THEME_NAME' ) && ( 'Vanilla' == CHILD_THEME_NAME ) ) {
 
@@ -858,7 +1105,10 @@ function ddw_gest_child_themes_export_additions( array $options ) {
 			'settings-field' => 'of_template'
 		);
 
+		$gest_ct_notice = 'ct_active';
+
 	}
+
 
 	/** Return the additional (child themes) settings fields to hook into the Genesis Exporter */
 	return $options;
@@ -870,10 +1120,21 @@ add_action( 'genesis_import_export_form', 'ddw_gest_exporter_notice' );
 /**
  * Adds an extra info message at the bottom of the Genesis Exporter page,
  *    informing the user that there's no warranty supplied for the use of this plugin!
+ *
+ * @since  1.0.0
+ *
+ * @uses   ddw_gest_plugin_help_content_faq()
+ *
+ * @global mixed $gest_plugins_notice, $gest_ct_notice
  */
 function ddw_gest_exporter_notice() {
 
-//
+	global $gest_plugins_notice, $gest_ct_notice;
+
+	/** Bail early if no supported plugins or child themes are active */
+	if ( ( 'no_child_themes' == $gest_ct_notice ) && ( 'no_plugins_active' == $gest_plugins_notice ) ) {
+		return;
+	}
 
 	/** Begin table code */
 	?>
