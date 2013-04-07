@@ -68,6 +68,7 @@ Please note: This plugin requires the Genesis Theme Framework.
 * Or follow me on [+David Decker](http://deckerweb.de/gplus) on Google Plus ;-)
 
 = More =
+* My 'exporter plugin' for "Premise" plugin: [*"Premise Settings Transporter"*](http://wordpress.org/extend/plugins/premise-settings-transporter/)
 * My 'Genesis Widgetized' plugins: [*"Genesis Widgetized Not Found & 404"*](http://wordpress.org/extend/plugins/genesis-widgetized-notfound/), [*"Genesis Widgetized Archive"*](http://wordpress.org/extend/plugins/genesis-widgetized-archive/) plus [*"Genesis Widgetized Footer"*](http://wordpress.org/extend/plugins/genesis-widgetized-footer/)
 * [Also see my other plugins](http://genesisthemes.de/en/wp-plugins/) or see [my WordPress.org profile page](http://profiles.wordpress.org/daveshine/)
 * Tip: [*GenesisFinder* - Find then create. Your Genesis Framework Search Engine.](http://genesisfinder.com/)
